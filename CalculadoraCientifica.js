@@ -1118,7 +1118,7 @@ class CalculadoraCientifica extends Calculadora {
             document.getElementsByTagName("input")[0].value = this.pantalla
 
             var signs = this.contarSignos(expresion)
-            this.actualizacionInterna(signs, new Number(eval(new Number(2) * signs + new Number(1))))
+            try { this.actualizacionInterna(signs, new Number(eval(new Number(2) * signs + new Number(1)))) } catch(err) { alert("Error: " + err) }
             this.introducirNumero(resPar)
 
             this.editable = false
@@ -1126,33 +1126,38 @@ class CalculadoraCientifica extends Calculadora {
     }
 
     actualizacionInterna(signs, numOfPositionsOfArray) {
-        // actualización de this.array y this.counter
-        var init = new Number(eval(this.counter - numOfPositionsOfArray + new Number(1)))
-        var i = init
-        while (i <= this.counter) {
-            this.array[i] = null
-            i++
-        }
-        this.counter = new Number(eval(init - 1))
 
-        // arreglar el caso en que se necesita actualizar la información interna por un =
-        if(this.counter < 0) {
-            this.counter = 0
-            this.array[0] = 0
-        }
+        try {
+            // actualización de this.array y this.counter
+            var init = new Number(eval(this.counter - numOfPositionsOfArray + new Number(1)))
+            var i = init
+            while (i <= this.counter) {
+                this.array[i] = null
+                i++
+            }
+            this.counter = new Number(eval(init - 1))
 
-        // actualización de this.indexSign y this.isPointer
-        var i2 = signs
-        while(i2 > 0) {
-            this.indexSign[eval(this.isPointer + 1 - i2)] = null
-            i2--
-        }
-        this.isPointer = new Number(eval(this.isPointer - signs))
+            // arreglar el caso en que se necesita actualizar la información interna por un =
+            if(this.counter < 0) {
+                this.counter = 0
+                this.array[0] = 0
+            }
 
-        // actualización de this.parI y this.cI
-        if(this.cI > -1) {
-            this.parI[this.cI] = null
-            this.cI--
+            // actualización de this.indexSign y this.isPointer
+            var i2 = signs
+            while(i2 > 0) {
+                this.indexSign[eval(this.isPointer + 1 - i2)] = null
+                i2--
+            }
+            this.isPointer = new Number(eval(this.isPointer - signs))
+
+            // actualización de this.parI y this.cI
+            if(this.cI > -1) {
+                this.parI[this.cI] = null
+                this.cI--
+            }
+        } catch(err) { 
+            alert("Error: " + err) 
         }
     }
 
@@ -1160,18 +1165,22 @@ class CalculadoraCientifica extends Calculadora {
         var i;
         this.adjust()
 
-        // si hay algún paréntesis abierto, calcula lo de dentro del paréntesis (desde i = primera posición del primer operando dentro del paréntesis)
-        if(this.cI > -1) {
-            var expr = this.pantalla.substring(this.parI[this.cI], this.pantalla.length)
-            var signs = new Number(this.contarSignos(expr))
+        try {
+            // si hay algún paréntesis abierto, calcula lo de dentro del paréntesis (desde i = primera posición del primer operando dentro del paréntesis)
+            if(this.cI > -1) {
+                var expr = this.pantalla.substring(this.parI[this.cI], this.pantalla.length)
+                var signs = new Number(this.contarSignos(expr))
 
-            // en numOfPositionsOfArray tenemos el número de posiciones desde el final de this.array cuyo resultado debemos calcular
-            var numOfPositionsOfArray = new Number(eval(new Number(2) * signs + new Number(1)))
-            var i = new Number(eval(this.counter - numOfPositionsOfArray + new Number(1)))
-        } 
-        // si no hay paréntesis, calcula todo lo que hay (desde i = 0)
-        else { 
-            var i = new Number(0) 
+                // en numOfPositionsOfArray tenemos el número de posiciones desde el final de this.array cuyo resultado debemos calcular
+                var numOfPositionsOfArray = new Number(eval(new Number(2) * signs + new Number(1)))
+                var i = new Number(eval(this.counter - numOfPositionsOfArray + new Number(1)))
+            } 
+            // si no hay paréntesis, calcula todo lo que hay (desde i = 0)
+            else { 
+                var i = new Number(0) 
+            }
+        } catch(err) { 
+            alert("Error: " + err) 
         }
 
         var op = ""
@@ -1227,7 +1236,7 @@ class CalculadoraCientifica extends Calculadora {
             document.getElementsByTagName("input")[0].value = this.pantalla
 
             var signs = this.contarSignos(expresion)
-            this.actualizacionInterna(signs, new Number(eval(new Number(2) * signs + new Number(1))))
+            try { this.actualizacionInterna(signs, new Number(eval(new Number(2) * signs + new Number(1)))) } catch(err) { alert("Error: " + err) }
             this.introducirNumero(res)
 
             this.editable = false
