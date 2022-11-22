@@ -808,7 +808,7 @@ class CalculadoraCientifica extends Calculadora {
             var res = new Number(0);
             if(!this.shft && !this.hyp) {       // tan
                 if(this.deg)
-                    res = new Number(Math.tan(toRad(new Number(this.array[this.counter]))));
+                    res = new Number(Math.tan(this.toRad(new Number(this.array[this.counter]))));
                 else
                     res = new Number(Math.tan(new Number(this.array[this.counter])));
             } else if(this.shft && !this.hyp) { // atan
