@@ -1,0 +1,96 @@
+/*****************
+ ALEX RODRIGUEZ VALDES - UO282936
+ Estilos de la Calculadora Cientifica
+*****************/
+
+/* Especificidad (0,0,1) */
+body {
+    display: flex;
+    flex-direction: column;
+
+	margin-left: auto;
+	margin-right: auto;
+	width: 25em;
+
+    color: black;
+    background-color: white;
+}
+
+/* Especificidad (0,0,1) */
+header {
+    margin-top: 1%;
+
+    border-top: 0.3em solid rgb(165, 192, 228);
+    border-left: 0.3em solid rgb(165, 192, 228);
+    border-right: 0.3em solid rgb(165, 192, 228);
+    /*hereda de body -> color: black; */
+    background-color: #c4d8f7;
+}
+
+/* Especificidad (0,0,1) */
+h1 {
+    text-align: center;
+}
+
+/* Especificidad (0,0,1) */
+form {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 0.6em;
+
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 0.9em;
+    padding-bottom: 0.9em;
+
+    border: 0.3em solid rgb(197, 216, 232);
+    /*hereda de body -> color: black; */
+    background-color: #d0e0f3
+}
+
+/* Especificidad (0,1,1) */
+form:first-of-type {
+    border-bottom: none;
+    padding-bottom: 0.25em;
+}
+
+/* Especificidad (0,1,1) */
+form:last-of-type {
+    border-top: none;
+    padding-top: 0.25em;
+}
+
+/* Especificidad (0,0,1) */
+label {
+    grid-column: span 5;
+
+    margin-left: 0.75em;
+
+    font-size: 1.2em;
+}
+
+/* Especificidad (0,1,1) */
+input[type=text] {
+    grid-column: span 5;
+
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+
+    width: 100%;
+
+    font-size: 2em;
+    text-align: right;
+}
+
+/* Especificidad (0,1,1) */
+input[type=button] {
+    grid-row: span 5;
+
+    width: 100%;
+
+    font-size: 1.2em;
+
+    border: 0.1em solid black;
+    /*hereda de body -> color: black; */
+    background-color: white;
+}
